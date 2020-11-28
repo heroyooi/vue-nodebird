@@ -1,0 +1,18 @@
+2020-11-28(토)
+
+최선을 다해서 기도하자
+최선을 다해서 예배 드리자
+최선을 다해서 말씀 읽자
+최선을 다해서 공부하자
+최선을 다해서 살아가자
+
+강좌 순서
+1. vue-nodebird
+2. react-nodebird
+3. typescript
+4. ts-react
+5. ts-nodebird
+
+vue.js + nuxt.js
+react.js + next.js
+typescript
