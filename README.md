@@ -24,6 +24,8 @@ npm i -D eslint eslint-plugin-vue
 ## ch3
 - 더미 데이터로 개발하기
   - 팔로잉, 팔로워
+- 라우팅 미들웨어
+- watch 사용: 회원가입 페이지에서 로그인 했을 경우 메인 페이지로 보냄
 
 ## ch4
 
@@ -34,4 +36,4 @@ npm i -D eslint eslint-plugin-vue
 [Nuxt.js](https://ko.nuxtjs.org)
 
 ## Course
-3-1 팔로워 팔로잉 더미 데이터
+3-3
