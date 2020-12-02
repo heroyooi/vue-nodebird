@@ -5,7 +5,7 @@ Vue.js + Nuxt.js + Vuetify
 ```command
 npm init
 npm i vue nuxt
-npm i vuetify @nuxtjs/vuetify @nuxtjs/axios
+npm i vuetify @nuxtjs/vuetify @nuxtjs/axios 
 
 npm i -D eslint eslint-plugin-vue
 ```
@@ -22,10 +22,12 @@ npm i -D eslint eslint-plugin-vue
   - 닉네임 수정
 
 ## ch3
-- 더미 데이터로 개발하기
+- 더미 데이터로 개발하기1
   - 팔로잉, 팔로워
 - 라우팅 미들웨어
 - watch 사용: 회원가입 페이지에서 로그인 했을 경우 메인 페이지로 보냄
+- 더미 데이터로 개발하기2
+  - 인피니티 스크롤링
 
 ## ch4
 
@@ -36,4 +38,4 @@ npm i -D eslint eslint-plugin-vue
 [Nuxt.js](https://ko.nuxtjs.org)
 
 ## Course
-3-3
+3-6

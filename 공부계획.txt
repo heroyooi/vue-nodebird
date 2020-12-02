@@ -7,11 +7,12 @@
 최선을 다해서 살아가자
 
 강좌 순서
-1. vue-nodebird
-2. react-nodebird
-3. typescript
-4. ts-react
-5. ts-nodebird
+강좌 내용 (기간)
+1. vue-nodebird (2020.12)
+2. react-nodebird (2020.12)
+3. typescript (2020.12 ~ 2021.01)
+4. ts-react (2021.01 ~ 02)
+5. ts-nodebird (2021.02 ~ 03)
 
 vue.js + nuxt.js
 react.js + next.js
