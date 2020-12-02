@@ -52,9 +52,9 @@ export default {
 
 ## ch5
 
-## Official Document
+## 공식문서
 [Vue.js](https://kr.vuejs.org)
 [Nuxt.js](https://ko.nuxtjs.org)
 
-## Course
+## 강좌
 4-1
