@@ -52,6 +52,8 @@ export default {
 ```command
 npm init
 npm i express
+npm i sequelize mysql2
+npm i -D sequelize-cli
 ```
 [MYSQL 다운로드](https://dev.mysql.com/downloads/mysql)
 
@@ -81,4 +83,4 @@ npm i express
 [Nuxt.js](https://ko.nuxtjs.org)
 
 ## 강좌
-4-3
+4-3 02:35
