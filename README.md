@@ -53,7 +53,13 @@ export default {
 npm init
 npm i express
 npm i sequelize mysql2
+
 npm i -D sequelize-cli
+npx sequelize init
+
+npm i -D nodemon
+
+npx sequelize db:create
 ```
 [MYSQL 다운로드](https://dev.mysql.com/downloads/mysql)
 
@@ -76,6 +82,49 @@ npm i -D sequelize-cli
 - 포트 번호: https는 443, http는 80이 숨어있다.
 - 서버를 실제로 배포할 때 이런 기본적인 지식이 없으면 배포를 할 수가 없다.
 
+- 개발용 DB랑 배포용 DB는 보통 다르다.
+
+- HTTP STATUS CODE
+  - 200 : 성공
+  - 201 : 성공적으로 생성됨
+  - 400~ : 클라이언트에서 잘못된 요청을 보냈다. 거절
+[HTTP 상태 코드](https://developer.mozilla.org/ko/docs/Web/HTTP/Status)
+
+- 프론트 서버와 백엔드 서버의 포트가 다른 경우 cors 에러가 난다.
+```command
+npm i cors
+
+```
+```JavaScript
+const cors = require('cors');
+
+app.use(cors('http://localhost:3000')); // 허용할 주소: http://localhost:3000
+```
+
+- 암호화 모듈 3가지: bcrypt, scrypt, pbkdf2
+```command
+npm i -g -p windows-build-tools ??
+npm i bcrypt
+```
+```JavaScript
+const bcrypt = require('bcrypt');
+
+app.post('/user', async (req, res, next) => {
+  try {
+    const hash = await bcrypt.hash(req.body.password, 12);
+    const newUser = await db.User.create({
+      email: req.body.email,
+      password: hash,
+      nickname: req.body.nickname
+    });
+    res.status(201).json(newUser);
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }  
+});
+```
+
 ## ch5
 
 ## 공식문서
@@ -83,4 +132,4 @@ npm i -D sequelize-cli
 [Nuxt.js](https://ko.nuxtjs.org)
 
 ## 강좌
-4-3 02:35
+4-7
