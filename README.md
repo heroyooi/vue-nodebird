@@ -85,9 +85,13 @@ npx sequelize db:create
 - 개발용 DB랑 배포용 DB는 보통 다르다.
 
 - HTTP STATUS CODE
-  - 200 : 성공
-  - 201 : 성공적으로 생성됨
-  - 400~ : 클라이언트에서 잘못된 요청을 보냈다. 거절
+  - 200: 성공
+  - 201: 성공적으로 생성됨
+  - 400~: 클라이언트에서 잘못된 요청을 보냄
+  - 401: 권한 없음
+  - 403: 금지
+  - 404: 페이지를 찾을 수 없음
+
 [HTTP 상태 코드](https://developer.mozilla.org/ko/docs/Web/HTTP/Status)
 
 - 프론트 서버와 백엔드 서버의 포트가 다른 경우 cors 에러가 난다.
@@ -125,6 +129,15 @@ app.post('/user', async (req, res, next) => {
 });
 ```
 
+- 시퀄라이즈 기존 데이터를 포맷하고 새로 테이블을 만드는 법
+- 실무에서는 마이그레이션 하는 방법을 따로 익혀야 한다.
+```JavaScript
+const db = require('./models');
+
+db.sequelize.sync({ force: true });
+```
+- 백엔드 서버 재실행
+
 ## ch5
 
 ## 공식문서
@@ -132,4 +145,4 @@ app.post('/user', async (req, res, next) => {
 [Nuxt.js](https://ko.nuxtjs.org)
 
 ## 강좌
-4-7
+4-8
