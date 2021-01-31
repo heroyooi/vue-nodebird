@@ -14,11 +14,42 @@ npm i -D eslint eslint-plugin-vue
 
 ## ch2
 - Vuex 모듈 시스템 설명 및 스토어 구조 잡기
+  - Vuex 모듈 구조
+```JavaScript (store/users.js)
+export const state = () => ({
+  me: null,
+});
+
+export const mutations = {
+  setMe(state, payload) {
+    state.me = payload;
+  },
+};
+
+export const actions = {
+  signUp({ commit, dispatch, state, rootState, getters, rootGetters }, payload) {
+    // 서버에 회원가입 요청을 보내는 부분
+    commit('setMe', payload);
+  },
+  logIn(context, payload) {
+
+  },
+};
+```
+  - state는 함수, mutations는 객체안에 함수들이 존재
+  - mutations는 단순한 동기적인 작업을 할 때 사용한다.
+  - actions는 복잡한 작업(비동기 작업)을 할 때 사용한다.
+    - actions 안에서 mutations를 실행할 수도 있고, 또다른 actions를 사용할 수 있다.
+    - rootState, rootGetters는 index 모듈의 state, getters 이다.
+    - mutations보다는 actions가 더 고차원적인 개념
+
 - 더미 데이터로 개발하기
   - 로그인, 회원가입
   - 글 작성·삭제
   - 댓글 작성
   - 닉네임 수정
+
+  - nuxt는 내부적으로 Vuex와 Vue Router를 사용한다.
 
 ## ch3
 - 더미 데이터로 개발하기1
@@ -145,4 +176,5 @@ db.sequelize.sync({ force: true });
 [Nuxt.js](https://ko.nuxtjs.org)
 
 ## 강좌
-4-8
+- 이전에 여기까지 -> 4-8
+- 다시 들음 2-4
