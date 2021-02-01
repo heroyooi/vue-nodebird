@@ -34,6 +34,9 @@ export const actions = {
   logIn(context, payload) {
 
   },
+  add({ commit }, payload) {
+    commit('addMainPost', payload, { root: true }); // index 모듈의 addMainPost를 실행
+  },
 };
 ```
   - state는 함수, mutations는 객체안에 함수들이 존재
@@ -51,6 +54,38 @@ export const actions = {
 
   - nuxt는 내부적으로 Vuex와 Vue Router를 사용한다.
 
+  - vuex에서 state를 가져올 때
+```vue
+<script>
+  import { mapState } from 'vuex';
+  export default {
+    computed: {
+      // 1
+      me() {
+        return this.$store.state.users.me;
+      },
+      // 2
+      ...mapState(['users/me'])
+
+      // 3
+      ...mapState('users', ['me'])      
+    }
+  }
+</script>
+```
+  - 컴포넌트의 props는 최대한 자세하게 작성해주는 것이 좋다.
+```vue
+<script>
+  export default {
+    props: {
+      post: {
+        type: Object,
+        required: true,
+      },
+    }
+  }
+</script>
+```
 ## ch3
 - 더미 데이터로 개발하기1
   - 팔로잉, 팔로워
@@ -177,4 +212,4 @@ db.sequelize.sync({ force: true });
 
 ## 강좌
 - 이전에 여기까지 -> 4-8
-- 다시 들음 2-4
+- 다시 들음 2-6
