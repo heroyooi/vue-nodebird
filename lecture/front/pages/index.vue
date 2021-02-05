@@ -21,13 +21,34 @@
         name: 'Nuxt.js',
       }
     },
+    fetch({ store }) {
+      store.dispatch('posts/loadPosts');
+    },
     computed: {
       me() {
         return this.$store.state.users.me;
       },
       mainPosts() {
         return this.$store.state.posts.mainPosts;
-      }
+      },
+      hasMorePost() {
+        return this.$store.state.posts.hasMorePost;
+      },
+    },
+    mounted() {
+      window.addEventListener('scroll', this.onScroll)
+    },
+    beforeDestroy() {
+      window.removeEventListener('scroll', this.onScroll)
+    },
+    methods: {
+      onScroll() {
+        if (window.pageYOffset + document.documentElement.clientHeight > document.documentElement.scrollHeight - 300) {
+          if (this.hasMorePost) {
+            this.$store.dispatch('posts/loadPosts');
+          }
+        }
+      },
     }
   }
 </script>

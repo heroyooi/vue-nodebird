@@ -37,6 +37,7 @@
     components: {
       FollowList,
     },
+    middleware: 'authenticated',
     data() {
       return {
         valid: false,
@@ -71,7 +72,7 @@
       removeFollower(id) {
         this.$store.dispatch('users/removeFollower', { id })
       }
-    }
+    },
   }
 </script>
 

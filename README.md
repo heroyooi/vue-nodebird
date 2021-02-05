@@ -114,6 +114,83 @@ export default {
 ```
 [Vue.js 공식문서 | 반응형에 대해 깊이 알아보기](https://kr.vuejs.org/v2/guide/reactivity.html)
 
+- 인피니티 스크롤링 구현해보기 (FE 입장)
+  - 전체 게시글의 갯수를 모른다.
+  - 10개씩 끊어서 다음 게시물을 가져온다. 그러다가 10개가 아니면 그때 더 이상 가져올 게시글이 없다고 예상할 수 있다.
+```JavaScript (store/posts.js)
+export const state = () => ({
+  mainPosts: [],
+  hasMorePost: true,
+});
+
+const totalPosts = 51;
+const limit = 10;
+
+export const mutations = {
+  loadPosts(state) {
+    const diff = totalPosts - state.mainPosts.length; // 아직 안 불러온 게시글 수
+    const fakePosts = Array(diff > limit ? limit : diff).fill().map(v => ({
+      id: Math.random().toString(),
+      User: {
+        id: 1,
+        nickname: '제로초',
+      },
+      content: `Hello infinite scrolling~ ${Math.random()}`,
+      Comments: [],
+      Images: [],
+    }));
+    state.mainPosts = state.mainPosts.concat(fakePosts);
+    state.hasMorePost = fakePosts.length === limit;
+  },
+};
+
+export const actions = {
+  loadPosts({ commit, state }, payload) {
+    if (state.hasMorePost) {
+      commit('loadPosts');
+    }
+  }
+}
+```
+
+  - fetch는 처음 시작할 때 데이터를 넣어준다.
+  - fetch는 보통 컴포넌트가 마운트 되기 전에 스토어에서 비동기적으로 데이터를 넣을 때 사용한다.
+```vue (pages/index.vue)
+<script>
+  export default {
+    computed: {
+      mainPosts() {
+        return this.$store.state.posts.mainPosts;
+      },
+      hasMorePost() {
+        return this.$store.state.posts.hasMorePost;
+      },
+    },
+    fetch({ store }) {
+      store.dispatch('posts/loadPosts');
+    },
+    mounted() {
+      window.addEventListener('scroll', this.onScroll)
+    },
+    beforeDestroy() {
+      window.removeEventListener('scroll', this.onScroll)
+    },
+    methods: {
+      onScroll() {
+        if (window.pageYOffset + document.documentElement.clientHeight > document.documentElement.scrollHeight - 300) {
+          if (this.hasMorePost) {
+            this.$store.dispatch('posts/loadPosts');
+          }
+        }
+      },
+    }
+  }
+</script>
+```
+  - 하지만 실무에서는 네트워크 상황으로 인해서 요청이 엄청나게 갈 수 있는 상황을 대비해서 쓰로틀링을 적용한다.
+  - limit 기반으로 안하는 이유는 게시글을 중간에 삭제하고 새로 쓰고 할 수 있기 때문에 totalPosts가 자꾸 바뀐다.
+  - 그래서 lastId 기반으로 개발 한다.
+
 ## ch4
 ```command
 npm init
@@ -212,4 +289,4 @@ db.sequelize.sync({ force: true });
 
 ## 강좌
 - 이전에 여기까지 -> 4-8
-- 다시 들음 3-2
+- 다시 들음 3-7
