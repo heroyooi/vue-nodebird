@@ -192,6 +192,23 @@ export const actions = {
   - 그래서 lastId 기반으로 개발 한다.
 
 ## ch4
+- 유용한 npm 명령어
+```command
+npm outdated
+```
+  - 패키지 중 오래된 목록이 뜬다.
+
+```command
+npm update
+```
+  - 업데이트 해준다.
+  - found 0 vulnerabilities 가 아닐 경우 아래 명령어로 취약점을 고쳐주어야 한다.
+
+```command
+npm audit fix
+```
+  - 업데이트 이후 최약점이 있을때 자동으로 취약점을 고쳐준다.
+
 ```command
 npm init
 npm i express
@@ -289,4 +306,4 @@ db.sequelize.sync({ force: true });
 
 ## 강좌
 - 이전에 여기까지 -> 4-8
-- 다시 들음 3-9
+- 다시 들음 4-2
