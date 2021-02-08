@@ -99,6 +99,7 @@
           this.$store.dispatch('users/signUp', {
             nickname: this.nickname,
             email: this.email,
+            password: this.password,
           });
         }
       }

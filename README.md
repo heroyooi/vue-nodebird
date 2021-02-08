@@ -213,14 +213,24 @@ npm audit fix
 npm init
 npm i express
 npm i sequelize mysql2
-
 npm i -D sequelize-cli
-npx sequelize init
-
 npm i -D nodemon
+```
+- sequelize는 db와 상관없이 같은 자바스크립트로 sql를 표현할 수 있다.
+- mysql2는 노드와 mysql를 연결시켜주는 드라이버
+- sequelize-cli가 쓰였다는 사실을 인지시켜준다. 반드시 명시해주어야함
 
+```command
+npx sequelize init
+```
+- npx는 명령어처럼 사용할 수 있게 만들어준다.
+- 중요한 것은 sequelize init
+
+```command
 npx sequelize db:create
 ```
+
+
 [MYSQL 다운로드](https://dev.mysql.com/downloads/mysql)
 
 - 프론트 서버에서 DB 접속을 바로하면 보안에 취약해진다.(소스 코드 유출 가능성이 높다.)
@@ -253,6 +263,13 @@ npx sequelize db:create
   - 404: 페이지를 찾을 수 없음
 
 [HTTP 상태 코드](https://developer.mozilla.org/ko/docs/Web/HTTP/Status)
+
+  - 헤더: 요청이나 응답에 대한 정보들
+  - 바디: 아무거나 보내도 된다.
+
+- DB에서는 테이블, 시퀄라이즈에서는 모델이라고 부른다.
+  - 
+
 
 - 프론트 서버와 백엔드 서버의 포트가 다른 경우 cors 에러가 난다.
 ```command
@@ -305,5 +322,4 @@ db.sequelize.sync({ force: true });
 [Nuxt.js](https://ko.nuxtjs.org)
 
 ## 강좌
-- 이전에 여기까지 -> 4-8
-- 다시 들음 4-2
+4-5 4:14
