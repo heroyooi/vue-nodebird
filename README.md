@@ -226,10 +226,11 @@ npx sequelize init
 - npx는 명령어처럼 사용할 수 있게 만들어준다.
 - 중요한 것은 sequelize init
 
+- DB 설정을 마치고나서, MYSQL를 켜고나서
 ```command
 npx sequelize db:create
 ```
-
+- DB를 생성한다.
 
 [MYSQL 다운로드](https://dev.mysql.com/downloads/mysql)
 
@@ -268,13 +269,13 @@ npx sequelize db:create
   - 바디: 아무거나 보내도 된다.
 
 - DB에서는 테이블, 시퀄라이즈에서는 모델이라고 부른다.
-  - 
 
 
-- 프론트 서버와 백엔드 서버의 포트가 다른 경우 cors 에러가 난다.
+- 프론트 서버와 백엔드 서버의 포트가 다른 경우 CORS 에러가 난다.
+- 에러 문구: Access to XMLHttpRequest at 'http://localhost:3085/user' from origin 'http://localhost:3000' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource.
+
 ```command
 npm i cors
-
 ```
 ```JavaScript
 const cors = require('cors');
@@ -284,9 +285,14 @@ app.use(cors('http://localhost:3000')); // 허용할 주소: http://localhost:30
 
 - 암호화 모듈 3가지: bcrypt, scrypt, pbkdf2
 ```command
-npm i -g -p windows-build-tools ??
 npm i bcrypt
 ```
+
+- bcrypt를 설치하다가 에러가 날 경우 아래 명령어 실행
+```command
+npm i -g -p windows-build-tools
+```
+
 ```JavaScript
 const bcrypt = require('bcrypt');
 
@@ -322,4 +328,4 @@ db.sequelize.sync({ force: true });
 [Nuxt.js](https://ko.nuxtjs.org)
 
 ## 강좌
-4-5 4:14
+4-7

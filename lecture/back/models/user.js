@@ -12,9 +12,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(100),
       allowNull: false,
     },
+  }, {
+    charset: 'utf8',
+    collate: 'utf8_general_ci', // 한글 저장돼요
   });
+
   User.associate = (db) => {
 
   };
+  
   return User;
 };

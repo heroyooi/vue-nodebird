@@ -1,19 +1,34 @@
 const express = require('express');
+const cors = require('cors');
+const bcrypt = require('bcrypt');
 
+const db = require('./models');
 const app = express();
 
+db.sequelize.sync();
+
+app.use(cors('http://localhost:3000'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.get('/', (req, res) => {
-  res.status(200).send('안녕 성연욱');
+  res.status(200).send('안녕 히어로');
 });
 
-app.post('/user', (req, res) => {
-  req.body.email;
-  req.body.password;
-  req.body.nickname;
-})
+app.post('/user', async (req, res, next) => {
+  try {
+    const hash = await bcrypt.hash(req.body.password, 12);
+    const newUser = await db.User.create({
+      email: req.body.email,
+      password: hash,
+      nickname: req.body.nickname,
+    })
+    res.status(201).json(newUser);
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }  
+});
 
 app.listen(3085, () => {
   console.log(`백엔드 서버 ${3085}번 포트에서 작동중.`);
