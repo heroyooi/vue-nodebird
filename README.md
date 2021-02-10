@@ -262,6 +262,7 @@ npx sequelize db:create
   - 401: 권한 없음
   - 403: 금지
   - 404: 페이지를 찾을 수 없음
+  - 500~: 서버 에러
 
 [HTTP 상태 코드](https://developer.mozilla.org/ko/docs/Web/HTTP/Status)
 
@@ -328,4 +329,4 @@ db.sequelize.sync({ force: true });
 [Nuxt.js](https://ko.nuxtjs.org)
 
 ## 강좌
-4-7
+4-8

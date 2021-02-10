@@ -5,7 +5,8 @@ const bcrypt = require('bcrypt');
 const db = require('./models');
 const app = express();
 
-db.sequelize.sync();
+db.sequelize.sync({ force: true });
+// db.sequelize.sync();
 
 app.use(cors('http://localhost:3000'));
 app.use(express.json());
@@ -18,15 +19,24 @@ app.get('/', (req, res) => {
 app.post('/user', async (req, res, next) => {
   try {
     const hash = await bcrypt.hash(req.body.password, 12);
+    const exUser = await db.User.findOne({
+      email: req.body.email,
+    });
+    if (exUser) { // 이미 회원가입 되어있으면
+      return res.status(403).json({
+        errorCode: 1,
+        message: '이미 회원가입 되어있습니다.',
+      });
+    }
     const newUser = await db.User.create({
       email: req.body.email,
       password: hash,
       nickname: req.body.nickname,
     })
-    res.status(201).json(newUser);
+    return res.status(201).json(newUser);
   } catch (err) {
     console.log(err);
-    next(err);
+    return next(err);
   }  
 });
 
