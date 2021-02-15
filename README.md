@@ -322,6 +322,19 @@ db.sequelize.sync({ force: true });
 ```
 - 백엔드 서버 재실행
 
+- 로그인 처리
+  - 사용자가 DB에 저장되어있는 이메일과 비밀번호를 서버로 보내줘서 서버가 확인을 하면 서버에서 세션(메모리)을 만든다.
+  - 세션에 사용자 정보가 들어있음.
+  - 필요할 때마다 프론트에서 서버로 요청을 보낼 때 세션을 검사해서 이 사람이 권한이 있는 사람인지 체크하고, 권한에 따라 게시글을 작성하거나 삭제하거나 할 수 있음
+  - 서비스마다 정책이 다를 수 있음.
+  - 세션 구현도 마음대로 할 수 있음. 패스포트를 사용해서 구현
+```command
+npm i passport passport-local
+npm i express-session
+npm i cookie-parser
+npm i morgan
+```
+
 ## ch5
 
 ## 공식문서
@@ -329,4 +342,4 @@ db.sequelize.sync({ force: true });
 [Nuxt.js](https://ko.nuxtjs.org)
 
 ## 강좌
-4-8
+4-10
