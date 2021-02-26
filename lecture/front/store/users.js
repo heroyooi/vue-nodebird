@@ -60,9 +60,9 @@ export const actions = {
     }, {
       withCredentials: true,
     })
-      .then((data) => {
-        console.log(data);
-        commit('setMe', payload);
+      .then((res) => {
+        console.log(res);
+        commit('setMe', res.data);
       }).catch((err) => {
         console.error(err);
       });
@@ -74,14 +74,23 @@ export const actions = {
     }, {
       withCredentials: true,
     })
-      .then((data) => {
-        commit('setMe', payload);
+      .then((res) => {
+        console.log(res);
+        commit('setMe', res.data);
       }).catch((err) => {
         console.error(err);
       });
   },
   logOut({ commit }, payload) {
-    commit('setMe', null);
+    this.$axios.post('http://localhost:3085/user/logout', {}, {
+      withCredentials: true,
+    })
+      .then((data) => {
+        commit('setMe', null);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   },
   changeNickname({ commit }, payload) {
     commit('changeNickname', payload);

@@ -342,4 +342,4 @@ npm i morgan
 [Nuxt.js](https://ko.nuxtjs.org)
 
 ## 강좌
-4-11. 로그아웃과 라우터 분리
+4-12
