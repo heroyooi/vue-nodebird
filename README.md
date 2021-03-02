@@ -335,6 +335,53 @@ npm i cookie-parser
 npm i morgan
 ```
 
+- 시퀄라이즈 관계 정의
+  - 1:1 (hasOne, belongsTo)
+  - 1:다 (hasMany, belongsTo)
+  - 다:다 (belongsToMany)
+    - 중간 테이블이 하나 생성된다. (PostHashtag)
+
+- 미들웨어 작성
+```JavaScript
+exports.isLoggedIn = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  return res.status(401).send('로그인이 필요합니다.');
+};
+```
+- next()
+  - 인수에 아무것도 없을 때 다음 미들웨어로 넘어감
+  - 인수가 있으면 에러 처리로 넘어감
+
+- 파일 시스템
+```command
+npm i multer
+```
+```JavaScript (back/routes/post.js)
+const upload = multer({
+  storage: multer.diskStorage({
+    destination(req, file, done) {
+      done(null, 'uploads');
+    },
+    filename(req, file, done) {
+      const ext = path.extname(file.originalname);
+      const basename = path.basename(file.originalname, ext); // 히어로.png, basename = 히어로, ext = .png
+      done(null, basename + Date.now() + ext);
+    },
+  }),
+  limit: { fileSize: 20 * 1024 * 1024 }, // 20MB
+});
+
+router.post('/images', isLoggedIn, upload.array('image'), (req, res) => {});
+```
+  - single (파일 하나)
+  - array (같은 키로 여러개)
+    - ex) image라는 키로 여러 개
+  - fields (다른 키로 여러개)
+    - ex) image1, image2로 여러 개
+  - none (파일 업로드 X)
+
 ## ch5
 
 ## 공식문서
@@ -342,4 +389,4 @@ npm i morgan
 [Nuxt.js](https://ko.nuxtjs.org)
 
 ## 강좌
-4-12
+4-17. 게시글 업로드
