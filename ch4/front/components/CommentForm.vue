@@ -11,7 +11,7 @@
       @input="onChangeTextarea"
     />
     <v-btn color="green" dark absolute top right type="submit">삐약</v-btn>
-  </v-form>
+  </v-form>  
 </template>
 
 <script>
@@ -62,7 +62,7 @@
             })
             .catch(() => {
 
-            })
+            });
         }
       }
     },
@@ -70,5 +70,4 @@
 </script>
 
 <style>
-
 </style>

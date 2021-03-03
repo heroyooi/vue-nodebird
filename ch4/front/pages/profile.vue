@@ -46,7 +46,7 @@
         nickname: '',
         nicknameRules: [
           v => !!v || '닉네임을 입력하세요.',
-        ],
+        ]
       }
     },
     fetch({ store }) {
@@ -75,8 +75,8 @@
     methods: {
       onChangeNickname() {
         this.$store.dispatch('users/changeNickname', {
-          nickname: this.nickname,
-        });
+          nickname: this.nickname
+        })
       },
       removeFollowing(id) {
         this.$store.dispatch('users/removeFollowing', { id })
@@ -84,16 +84,14 @@
       removeFollower(id) {
         this.$store.dispatch('users/removeFollower', { id })
       },
+      loadMoreFollowings() {
+        this.$store.dispatch('users/loadFollowings');
+      },
       loadMoreFollowers() {
         this.$store.dispatch('users/loadFollowers');
       },
-      loadMoreFollowings() {
-        this.$store.dispatch('users/loadFollowings');
-      }
     },
   }
 </script>
 
-<style>
-
-</style>
+<style></style>

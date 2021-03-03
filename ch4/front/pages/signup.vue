@@ -49,7 +49,7 @@
 
 <script>
   export default {
-    middleware: 'anonymous',
+    middleware: 'anonymous',    
     data() {
       return {
         valid: false,
@@ -100,15 +100,7 @@
             nickname: this.nickname,
             email: this.email,
             password: this.password,
-          })
-            .then(() => {
-              this.$router.push({
-                path: '/',
-              });
-            })
-            .catch(() => {
-              alert('회원가입 실패');
-            })
+          });
         }
       }
     },

@@ -14,6 +14,7 @@
                 label="검색"
                 hide-details
                 prepend-icon="mdi-magnify"
+                :style="{ display: 'flex', alignItems: 'center' }"
               />
             </div>
           </v-form>
@@ -47,7 +48,7 @@
     data() {
       return {
         hashtag: '',
-      }
+      };
     },
     methods: {
       onSearchHashtag() {

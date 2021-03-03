@@ -3,7 +3,7 @@ export const state = () => ({
 });
 
 export const mutations = {
-  BYE(state) {
+  bye(state) {
     state.hello = 'goodbye';
   }
-};
+}

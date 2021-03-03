@@ -36,7 +36,7 @@ export const mutations = {
     const fakeUsers = Array(diff > limit ? limit : diff).fill().map(v => ({
       id: Math.random().toString(),
       nickname: Math.floor(Math.random() * 1000),
-    }))
+    }));
     state.followingList = state.followingList.concat(fakeUsers);
     state.hasMoreFollowing = fakeUsers.length === limit;
   },
@@ -45,27 +45,52 @@ export const mutations = {
     const fakeUsers = Array(diff > limit ? limit : diff).fill().map(v => ({
       id: Math.random().toString(),
       nickname: Math.floor(Math.random() * 1000),
-    }))
+    }));
     state.followerList = state.followerList.concat(fakeUsers);
     state.hasMoreFollower = fakeUsers.length === limit;
-  }
+  },
 };
 
 export const actions = {
   signUp({ commit }, payload) {
-    // 서버에 회원가입 요청을 보내는 부분
     this.$axios.post('http://localhost:3085/user', {
       email: payload.email,
       nickname: payload.nickname,
       password: payload.password,
-    });
-    commit('setMe', payload);
+    }, {
+      withCredentials: true,
+    })
+      .then((res) => {
+        console.log(res);
+        commit('setMe', res.data);
+      }).catch((err) => {
+        console.error(err);
+      });
   },
   logIn({ commit }, payload) {
-    commit('setMe', payload);
+    this.$axios.post('http://localhost:3085/user/login', {
+      email: payload.email,
+      password: payload.password,
+    }, {
+      withCredentials: true,
+    })
+      .then((res) => {
+        console.log(res);
+        commit('setMe', res.data);
+      }).catch((err) => {
+        console.error(err);
+      });
   },
   logOut({ commit }, payload) {
-    commit('setMe', null);
+    this.$axios.post('http://localhost:3085/user/logout', {}, {
+      withCredentials: true,
+    })
+      .then((data) => {
+        commit('setMe', null);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   },
   changeNickname({ commit }, payload) {
     commit('changeNickname', payload);
@@ -89,8 +114,8 @@ export const actions = {
     }
   },
   loadFollowings({ commit, state }, payload) {
-    if (state.hasMoreFollowing) { 
+    if (state.hasMoreFollowing) {
       commit('loadFollowings');
     }
   }
-};
+}

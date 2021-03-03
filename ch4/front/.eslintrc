@@ -13,7 +13,6 @@
   "plugins": [],
   "rules": {
     "vue/max-attributes-per-line": "off",
-    "vue/singleline-html-element-content-newline": "off",
-    "vue/mustache-interpolation-spacing": "off"
+    "vue/singleline-html-element-content-newline": "off"
   }
 }

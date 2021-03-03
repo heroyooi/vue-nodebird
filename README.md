@@ -341,6 +341,19 @@ npm i morgan
   - 다:다 (belongsToMany)
     - 중간 테이블이 하나 생성된다. (PostHashtag)
 
+```JavaScript
+Post.associate = (db) => {
+  db.Post.belongsToMany(db.Hashtag, { through: 'PostHashtag' });
+}
+```
+  - 관계를 정의하면 
+    - add(추가) 예) addHashtags
+    - get(조회) 예) getHashtags
+    - set(수정) 예) setHashtags
+    - remove(제거) 예) removeHashtags
+    - 뒤에 모델명을 붙인 메서드들이 생긴다.
+    - 단수형도 있고 복수형도 있다. 예) addHashtag, addHashtags
+
 - 미들웨어 작성
 ```JavaScript
 exports.isLoggedIn = (req, res, next) => {
@@ -389,4 +402,4 @@ router.post('/images', isLoggedIn, upload.array('image'), (req, res) => {});
 [Nuxt.js](https://ko.nuxtjs.org)
 
 ## 강좌
-4-17. 게시글 업로드
+5-1, 6-1 까지 다 들음

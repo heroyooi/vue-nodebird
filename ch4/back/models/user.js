@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING(40), // 40자 이내
       allowNull: false, // 필수
-      unique: true, // 중복 금지
+      unique: true, // 중복금지
     },
     nickname: {
       type: DataTypes.STRING(20),
@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.associate = (db) => {
-
+    db.User.hasMany(db.Post);
+    db.User.hasMany(db.Comment);
   };
   
   return User;

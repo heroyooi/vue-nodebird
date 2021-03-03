@@ -30,10 +30,13 @@
       },
       hasMorePost() {
         return this.$store.state.posts.hasMorePost;
-      }
+      },
     },
     mounted() {
-      window.addEventListener('scroll', this.onScroll);
+      window.addEventListener('scroll', this.onScroll)
+    },
+    beforeDestroy() {
+      window.removeEventListener('scroll', this.onScroll)
     },
     methods: {
       onScroll() {
@@ -43,13 +46,8 @@
           }
         }
       },
-    },
-    beforeDestory() {
-      window.removeEventListener('scroll', this.onScroll);
-    },
+    }
   }
 </script>
 
-<style>
-
-</style>
+<style></style>
